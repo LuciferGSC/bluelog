@@ -2,20 +2,20 @@
 
 *A blue blog.*
 
-> Example application for *[Python Web Development with Flask](https://helloflask.com/en/book/1)* (《[Flask Web 开发实战](https://helloflask.com/book/1)》).
+> 参考自： *[Python Web Development with Flask](https://helloflask.com/en/book/1)* (《[Flask Web 开发实战](https://helloflask.com/book/1)》).
 
-Demo: http://bluelog.helloflask.com
+演示地址: http://bluelog.helloflask.com
 
-![Screenshot](https://helloflask.com/screenshots/bluelog.png)
+![页面展示](./docs/assets/页面展示.png)
 
-## Installation
+## 安装
 
 clone:
 ```
-$ git clone https://github.com/greyli/bluelog.git
+$ git clone https://github.com/LuciferGSC/bluelog.git
 $ cd bluelog
 ```
-create & activate virtual env then install dependency:
+创建 & 激活虚拟环境然后安装依赖:
 
 with venv/virtualenv + pip:
 ```
@@ -28,17 +28,22 @@ or with Pipenv:
 $ pipenv install --dev
 $ pipenv shell
 ```
-generate fake data then run:
+
+
+生成假数据并运行:
 ```
 $ flask forge
 $ flask run
 * Running on http://127.0.0.1:5000/
 ```
 
-Test account:
+测试账号:
 
 * username: `admin`
 * password: `helloflask`
+
+附开发文档：
+`docs/`
 
 ## License
 

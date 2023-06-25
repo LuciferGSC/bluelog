@@ -1,0 +1,18 @@
+@startuml
+actor 用户
+participant "浏览器" as browser
+participant "服务器" as server
+database "数据库" as db
+
+用户 -> browser: 输入用户名和密码
+browser -> server: 发送POST请求
+server -> db: 查询用户信息
+db -> server: 返回用户信息
+alt 用户名和密码匹配
+    server -> browser: 发送登录成功的响应
+    browser -> 用户: 显示登录成功的页面
+else 用户名或密码错误
+    server -> browser: 发送登录失败的响应
+    browser -> 用户: 显示登录失败的提示
+end
+@enduml

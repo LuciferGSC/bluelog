@@ -1,0 +1,25 @@
+@startuml
+actor 用户
+participant "浏览器" as browser
+participant "服务器" as server
+participant "数据库" as db
+
+用户 -> browser: 输入网址
+browser -> server: 发送GET请求
+server -> browser: 返回首页页面
+browser -> 用户: 显示首页页面
+用户 -> browser: 点击一篇文章标题
+browser -> server: 发送GET请求
+server -> db: 查询文章数据
+db -> server: 返回文章数据
+server -> browser: 返回文章页面
+browser -> 用户: 显示文章页面
+
+用户 -> browser: 输入评论内容和个人信息
+browser -> server: 发送POST请求
+server -> db: 插入评论数据
+db -> server: 返回插入结果
+server -> browser: 发送发表成功的响应
+browser -> 用户: 显示发表成功的提示
+
+@enduml

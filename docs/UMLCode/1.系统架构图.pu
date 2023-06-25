@@ -1,0 +1,33 @@
+@startuml
+package "前端" {
+  [浏览器]
+  [模板]
+  [CSS]
+  [JavaScript]
+}
+
+package "后端" {
+  [Flask]
+  [路由]
+  [视图函数]
+  [表单]
+  [蓝图]
+}
+
+package "数据库" {
+  [SQLite]
+  [SQLAlchemy]
+  [模型]
+}
+
+[浏览器] ..> [模板] : 渲染
+[模板] ..> [CSS] : 引用
+[模板] ..> [JavaScript] : 引用
+[浏览器] ..> [Flask] : 发送请求
+[Flask] ..> [路由] : 匹配
+[路由] ..> [视图函数] : 调用
+[视图函数] ..> [表单] : 验证
+[视图函数] ..> [模型] : 操作
+[模型] ..> [SQLAlchemy] : 映射
+[SQLAlchemy] ..> [SQLite] : 存储
+@enduml

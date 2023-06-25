@@ -1,0 +1,41 @@
+@startuml
+actor 管理员
+participant "浏览器" as browser
+participant "服务器" as server
+participant "数据库" as db
+
+管理员 -> browser: 输入网址
+browser -> server: 发送GET请求
+server -> browser: 返回首页页面
+browser -> 管理员: 显示首页页面
+管理员 -> browser: 点击登录按钮
+browser -> server: 发送GET请求
+server -> browser: 返回登录页面
+browser -> 管理员: 显示登录页面
+管理员 -> browser: 输入用户名和密码
+browser -> server: 发送POST请求
+server -> db: 查询用户信息
+db -> server: 返回用户信息
+alt 用户名和密码匹配且用户是管理员
+    server -> browser: 发送登录成功的响应
+    browser -> 管理员: 显示登录成功的提示
+else 用户名或密码错误或用户不是管理员
+    server -> browser: 发送登录失败的响应
+    browser -> 管理员: 显示登录失败的提示
+end
+
+管理员 -> browser: 点击管理评论按钮
+browser -> server: 发送GET请求
+server -> db: 查询未审核的评论数据
+db -> server: 返回未审核的评论数据
+server -> browser: 返回管理评论页面
+browser -> 管理员: 显示管理评论页面
+
+管理员 -> browser: 选择一条评论并点击通过按钮或拒绝按钮
+browser -> server: 发送POST请求
+server -> db: 更新评论数据的审核状态和是否来自管理员字段
+db -> server: 返回更新结果
+server -> browser: 发送审核成功的响应
+browser -> 管理员: 显示审核成功的提示
+
+@enduml

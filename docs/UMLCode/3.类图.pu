@@ -1,0 +1,91 @@
+@startuml
+!define table(x) class x << (T,#FFAAAA) >>
+!define primary_key(x) <b>x</b>
+!define foreign_key(x) <color:blue>x</color>
+hide methods
+hide stereotypes
+
+class Flask {
+  name
+  import_name
+  root_path
+  static_folder
+  static_url_path
+  template_folder
+  instance_path
+  instance_relative_config
+  config_class
+  testing
+  secret_key
+  session_cookie_name
+  permanent_session_lifetime
+  use_x_sendfile
+  json_encoder
+  json_decoder
+  jinja_options
+  default_config
+}
+
+class Blueprint {
+  name
+  import_name
+  static_folder
+  static_url_path
+  template_folder
+  url_prefix
+  subdomain
+  url_defaults
+}
+
+class Admin {
+  id : int <<primary_key>>
+  username : str <<unique>>
+  password_hash : str <<unique>>
+}
+
+class Category {
+  id : int <<primary_key>>
+  name : str <<unique>>
+}
+
+class Post {
+  id : int <<primary_key>>
+  title : str <<unique>>
+  body : str 
+  timestamp : datetime 
+  can_comment : bool 
+}
+
+class Comment {
+  id : int <<primary_key>>
+  author : str 
+  email : str 
+  site : str 
+  body : str 
+  from_admin : bool 
+  reviewed : bool 
+}
+
+class Link {
+ id : int <<primary_key>>
+ name : str 
+ url : str 
+}
+
+Flask "1" *-- "0..*" Blueprint : contains
+
+Blueprint "1" -- "0..*" Admin : manages
+
+Blueprint "1" -- "0..*" Category : creates
+
+Blueprint "1" -- "0..*" Post : publishes
+
+Blueprint "1" -- "0..*" Comment : reviews
+
+Blueprint "1" -- "0..*" Link : adds
+
+Post "1" *-- "0..1" Category : has a
+
+Comment "0..*" -- "1" Post : belongs to
+
+@enduml
